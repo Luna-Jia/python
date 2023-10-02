@@ -26,12 +26,15 @@ def compute_pi(n):
 # be the square root. The function compute_sqrt(x) computes the square root of x and returns the square root.
 
 def compute_sqrt(x):
-    sqrt = 1
-    next = 0.5 * (sqrt + x/sqrt)
-    sqrt = next
-
-
-
+     # create an variable "sqrt", a container to hold the answer, initialize it to 1
+    sqrt = 1 
+    for i in range (10):
+        # repeatly compute "next" using "sqrt"
+        next = 0.5 * (sqrt + x/sqrt)
+        # assign next to sqrt
+        sqrt = next
+    # print out the answer to screen
+    print(sqrt)
 
 
 
@@ -44,6 +47,12 @@ def main():
         num = int(input("Enter a integer term number to compute pi: "))
         # call function 
         compute_pi(num)
+
+    elif (questionNum == 2):
+        num = int(input("Enter a number to compute square root: "))
+        # call function 
+        compute_sqrt(num)
+
 
 # call main function 
 main()
