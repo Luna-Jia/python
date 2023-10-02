@@ -37,6 +37,36 @@ def compute_sqrt(x):
     print(sqrt)
 
 
+#3.
+# Write a function that decides whether a given number is a prime or not. A prime number is a number that is 
+# divisible only by 1 and itself. The function is_prime(n) decides whether n is prime or not and returns true 
+# if n is prime and returns false otherwise. Write another function display_primes(n)that displays all prime 
+# numbers less than or equal to n.
+
+def is_prime(n):
+    # 0 and 1 is not prime number, exclude them
+    if(n <= 1): 
+        return False 
+    # 2 and 3 is prime number
+    if(n == 3 or n == 2):
+        return True
+    
+    for i in range (2, n):
+        # exlude n that can be divisible by any number from 2 to (n-1)
+        if( n % i == 0):
+            return False
+    # all else are prime number 
+    return True
+
+def display_primes(n):
+    # prompte 
+    print("Prime numbers less than or equal to " + str(n) + ":")
+
+    # traverse all the number from 0 to n, check 
+    for i in range(n+1):
+        if(is_prime(i)):
+            print(i)
+
 
 # 10. Question Menu
 def main():
@@ -52,6 +82,12 @@ def main():
         num = int(input("Enter a number to compute square root: "))
         # call function 
         compute_sqrt(num)
+    
+    elif( questionNum == 3):
+        num = int(input("Enter a number to display all prime: "))
+        # call function 
+        display_primes(num)
+
 
 
 # call main function 
