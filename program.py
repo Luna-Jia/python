@@ -1,3 +1,4 @@
+import math
 
 # 1.
 # Write a function that computes the value of mathematical constant π. The value of π 
@@ -151,9 +152,32 @@ def compute_tax(income, status, state):
     print(tax)
     return tax
 
+# 6.
+# Write a function that solves a given quadratic equation. The function is solve_quadratic(a, b, c).
+# The input parameters a, b, and c represent the coefficients of the quadratic equation 
+# ax2 + bx + c = 0. First the function checks whether the given equation actually has solutions. The
+# equation has solutions only if b2 – 4ac ≥ 0. If there are solutions then the function computes the 
+# solutions using the formula (–b ± √(b2 – 4ac))/2a. The function returns the two solutions as return 
+# values. If there are no solutions then the function returns two zeros.
+
+def solve_quadratic(a, b, c):
+   
+    dis = b * b - 4 * a * c
+
+    if(dis >= 0):
+        solution1 = (-b + math.sqrt(dis)) / (2*a)
+        solution2 = (-b - math.sqrt(dis)) / (2*a)
+        
+        #return solution1, solution2
+        print(f"solution1: {solution1}")
+        print(f"solution2: {solution2}")
+        return solution1, solution2
 
 
-
+    else:
+        print("No solution")
+        return 0, 0
+        
 
 # 10. Question Menu
 def main():
@@ -162,6 +186,7 @@ def main():
     print("Question 3: display prime number")
     print("Question 4: student score")
     print("Question 5: tax calculation")
+    print(("Question 6: quadratic equation"))
     
 
 
@@ -197,6 +222,15 @@ def main():
             state = input("Enter state residency: 'i' for instate, 'o' for out state: ")
             
             compute_tax(income, status, state)
+
+        elif(questionNum == 6):
+            
+            a = int(input("Enter a: "))
+            b = int(input("Enter b: "))
+            c = int(input("Enter c: "))
+
+            solve_quadratic(a, b, c)
+
 
 
 
