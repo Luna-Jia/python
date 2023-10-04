@@ -120,6 +120,40 @@ def process_scores():
 
     print("Average score: " + str(average))
 
+# 5. 
+# Write a function that determines the tax amount according to the following tax rules. 
+# The tax rate depends on the income, the marital status, and the state residency. For in state 
+# residents, the following rates apply. If single and income is less than 30000 then tax rate is 
+# 20%. If single and income is greater or equal to 30000 then tax rate is 25%. If married and income
+# is less than 50000 then tax rate is 10%. If married and income is greater or equal to 50000 then
+# tax rate is 15%. For out of state residents, the similar rules apply except the tax rate is 3% 
+# less than the tax rate of the corresponding in state residents. The function is 
+# compute_tax(income, status, state). The income is an integer. The status is string single or 
+# married in lower or upper case letters. The state is character i or o in lower or upper case 
+# letters. The function computes and returns the tax amount.
+def compute_tax(income, status, state):
+   
+
+    if(status.lower() == "single"):
+        if(income < 30000):
+            tax = income * 0.2
+        else:
+            tax = income * 0.25
+    else:
+        if(income < 50000):
+            tax = income * 0.1
+        else:
+            tax = income * 0.15
+    
+    if(state.lower() == "o"):
+        tax = 0.97 * tax
+    
+    print(tax)
+    return tax
+
+
+
+
 
 # 10. Question Menu
 def main():
@@ -127,6 +161,8 @@ def main():
     print("Question 2: compute square root")
     print("Question 3: display prime number")
     print("Question 4: student score")
+    print("Question 5: tax calculation")
+    
 
 
     # continue prompte, until user quit
@@ -134,7 +170,7 @@ def main():
         # prompte the user for input, then save it to variable questionNum
         questionNum = int(input("Enter a question number from 1 ~ 9 (Enter 0 to quit):"))
 
-        if(questionNum == "0"): break
+        if(questionNum == 0): break
 
         if (questionNum == 1):
             num = int(input("Enter a integer term number to compute pi: "))
@@ -153,6 +189,14 @@ def main():
     
         elif(questionNum == 4):
             process_scores()
+        
+        elif(questionNum == 5):
+            
+            status = input("Enter marital status: married or single: ")
+            income = int(input("Enther income: "))
+            state = input("Enter state residency: 'i' for instate, 'o' for out state: ")
+            
+            compute_tax(income, status, state)
 
 
 
