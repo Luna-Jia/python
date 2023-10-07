@@ -177,6 +177,26 @@ def solve_quadratic(a, b, c):
     else:
         print("No solution")
         return 0, 0
+    
+# 7.
+# Write a function sort(list) that sorts a given list of numbers. The function returns the sorted 
+# list as return value. The given input list remains unchanged. Selection sort must be used. Built in 
+# sort function cannot be used.
+
+def sort(list):
+    cpList = list.copy()
+    for i in range(len(list)):
+        min_index = i
+        for j in range(i+1,len(list)):
+            if int(cpList[j]) < int(cpList[i]):
+                temp = cpList[i]
+                cpList[i] = cpList[j]
+                cpList[j] = temp
+    
+    for i in range(len(list)):
+        print(cpList[i])
+    
+    return cpList
         
 
 # 10. Question Menu
@@ -186,9 +206,9 @@ def main():
     print("Question 3: display prime number")
     print("Question 4: student score")
     print("Question 5: tax calculation")
-    print(("Question 6: quadratic equation"))
+    print("Question 6: quadratic equation")
+    print("Question 7: selection sort")
     
-
 
     # continue prompte, until user quit
     while True:
@@ -230,6 +250,12 @@ def main():
             c = int(input("Enter c: "))
 
             solve_quadratic(a, b, c)
+
+        elif(questionNum == 7):
+
+            list = (input("Enter numbers, seperate numbers with space: ")).split()
+
+            sort(list)
 
 
 
