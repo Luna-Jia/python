@@ -134,18 +134,24 @@ def process_scores():
 # letters. The function computes and returns the tax amount.
 def compute_tax(income, status, state):
    
-
+    # if single 
     if(status.lower() == "single"):
+        # if single and poor
         if(income < 30000):
             tax = income * 0.2
+        # if single not poor    
         else:
             tax = income * 0.25
+    # if married
     else:
+        # if married and poor
         if(income < 50000):
             tax = income * 0.1
+        # if married rich
         else:
             tax = income * 0.15
     
+    # in state or not
     if(state.lower() == "o"):
         tax = 0.97 * tax
     
@@ -164,6 +170,7 @@ def solve_quadratic(a, b, c):
    
     dis = b * b - 4 * a * c
 
+    # if dis >= 0, has solutions
     if(dis >= 0):
         solution1 = (-b + math.sqrt(dis)) / (2*a)
         solution2 = (-b - math.sqrt(dis)) / (2*a)
@@ -173,7 +180,7 @@ def solve_quadratic(a, b, c):
         print(f"solution2: {solution2}")
         return solution1, solution2
 
-
+    # if dis < 0, no solution
     else:
         print("No solution")
         return 0, 0
@@ -184,15 +191,22 @@ def solve_quadratic(a, b, c):
 # sort function cannot be used.
 
 def sort(list):
+    # Since orignial list cannot be changed, copy list to a new list called "cpList"
     cpList = list.copy()
+    # traverse every element in the list, index 0 to the end
     for i in range(len(list)):
+        # set the index of minimum number to i, minimum index will start from index 0
         min_index = i
+        # for each element, traverse and compare all the numbers after this element
         for j in range(i+1,len(list)):
+            # if the later number smaller than the element, swap
             if int(cpList[j]) < int(cpList[i]):
+                # swap with an temporary container called "temp"
                 temp = cpList[i]
                 cpList[i] = cpList[j]
                 cpList[j] = temp
     
+    # print the list: traverse every element and print each
     for i in range(len(list)):
         print(cpList[i])
     
@@ -210,18 +224,24 @@ def sort(list):
 # name as inputs and returns user id and password as outputs.
 
 def id_password(first, last):
+    # first letter of the first name
     firstName1stLetter = first[0]
+    # length of the first name
     lenFirst = len(first)
+    # last letter of the first name 
     firstNameFinalLetter = first[(lenFirst)-1]
 
+    # id 
     id = (firstName1stLetter + last).upper()
+    # password
     password = (firstName1stLetter + firstNameFinalLetter + last[0:3] + str(lenFirst) + str(len(last))).upper()
 
     print("Id: " + id)
     print("Password: " + password)
 
     return id, password
-        
+
+  
 
 # 10. Question Menu
 def main():
@@ -291,6 +311,48 @@ def main():
 
 # call main function 
 main()
+
+
+# 11.
+# Write a Rectangle class. The class has two data members namely length and width. It has a constructor that 
+# sets the length and width to its two parameter values. It has set and get methods for each of length and width. 
+# The class a method that returns the area of the rectangle. It also has the standard string method that returns 
+# a string representation of the rectangle. Write code to test all the methods of the rectangle class.
+
+class Rectangle:
+    # constructor 
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
+
+    # set method
+    def setLength(self, length):
+        self.length = length
+    
+    def setWidth(self, width):
+        self.width = width
+
+    # get method 
+    def getLength(self):
+        return self.length
+    
+    def getWidth(self):
+        return self.width
+
+    # method for return area
+    def area(self):
+        return self.length * self.width
+       
+
+    # to string 
+    def __str__(self):
+        return "length: " + str(self.length) +"\nwidth: " + str(self.width)
+    
+# test:
+x = Rectangle(20, 30)
+print(x)
+print("Area:", x.area())
+
 
 
 
