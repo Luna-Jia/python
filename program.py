@@ -197,6 +197,30 @@ def sort(list):
         print(cpList[i])
     
     return cpList
+
+# 8.
+# Write a function that automatically generates the user id and the password for the user. The user id 
+# and the pass words are based on the user’s last name and first name. The user id is the first letter 
+# of the first name followed by the last name. The password is the first letter of the first name 
+# followed the last letter of the first name followed by the first three letters of the last name 
+# followed by the length of the first name followed by the length of the last name. The user may enter 
+# the first and last names in lower or upper case letters. Both the user id and passwords must be in 
+# upper case. For example, if the first name is John and the last name is Maxwell then the user id is 
+# JMAXWELL and the password is JNMAX47. The function id_password(first, last) takes first name and last 
+# name as inputs and returns user id and password as outputs.
+
+def id_password(first, last):
+    firstName1stLetter = first[0]
+    lenFirst = len(first)
+    firstNameFinalLetter = first[(lenFirst)-1]
+
+    id = (firstName1stLetter + last).upper()
+    password = (firstName1stLetter + firstNameFinalLetter + last[0:3] + str(lenFirst) + str(len(last))).upper()
+
+    print("Id: " + id)
+    print("Password: " + password)
+
+    return id, password
         
 
 # 10. Question Menu
@@ -208,6 +232,7 @@ def main():
     print("Question 5: tax calculation")
     print("Question 6: quadratic equation")
     print("Question 7: selection sort")
+    print("Question 8: Id & Password Generator")
     
 
     # continue prompte, until user quit
@@ -256,8 +281,12 @@ def main():
             list = (input("Enter numbers, seperate numbers with space: ")).split()
 
             sort(list)
+        
+        elif(questionNum == 8):
+            first = input("Enter first name: ")
+            last = input("Enter last name: ")
 
-
+            id_password(first, last)
 
 
 # call main function 
