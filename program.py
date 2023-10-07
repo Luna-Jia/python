@@ -1,3 +1,5 @@
+# Luna Jia
+
 import math
 
 # 1.
@@ -241,7 +243,69 @@ def id_password(first, last):
 
     return id, password
 
-  
+# 9.
+# Write a function that reads an input file and creates a sorted output file. The function is 
+# file_sort(infile, outfile). The function takes the file names as parameters. The input file contains 
+# student information and has the following format. The first line contains the number of students in the
+# file. Each subsequent line contains information about one student. Each line contains three fields 
+# namely student id, name, and gpa in that order separated by blank. The student id is a positive integer. 
+# The name is a single word string. The gpa is a double type value. The function sorts the student 
+# information in the ascending order of student id. The ordered student information is written to the 
+# output file. The output file has the same format as the input file. Built in sort function cannot be 
+# used.
+
+def file_sort(infile, outfile):
+
+
+    # open the file 
+    fhandIn = open(infile,"r")
+
+    # read "student number" from the first line, save it to a variable called "studentCount"
+    studentCount = fhandIn.readline()
+
+    # get ride of blank space and cast "studentCount" data type from string to int
+    studentCount = int(studentCount.strip())
+
+    # creat an empty list called students
+    students = []
+
+    # while the line is not null, continue read lines
+    student = fhandIn.readline()
+    while student != "":
+
+        # get ride of the blank space, split element with space 
+        student = student.strip()
+        studentL = student.split()
+
+        # add each student to "students" list. "students" is now a 2d array 
+        students.append(studentL)
+    
+    fhandIn.close()
+
+
+    # selection sort student based on id 
+    for i in range (len(students)):
+        min_index = i
+        for j in range (i+1, len(students)):
+            if (int(students[j][0]) < int(students[min_index][0])):
+                temp = students[min_index]
+                students[min_index] = students[j]
+                students[j] = temp
+
+    
+    # write the sorted students to file 
+
+    # opent the file 
+    fhandOut = open(outfile, "w")
+    # write student number to the first line
+    fhandOut.write(str(studentCount) + "\n")
+
+    # write sorted students to file
+    for student in students:
+        fhandOut.write(' '.join(student) + "\n")
+    
+    fhandOut.close()
+ 
 
 # 10. Question Menu
 def main():
@@ -253,6 +317,7 @@ def main():
     print("Question 6: quadratic equation")
     print("Question 7: selection sort")
     print("Question 8: Id & Password Generator")
+    print("Question 9: read/write file -- sort students")
     
 
     # continue prompte, until user quit
@@ -307,6 +372,11 @@ def main():
             last = input("Enter last name: ")
 
             id_password(first, last)
+
+        elif(questionNum == 9):
+            infile = input("Enter input file name: ")
+            outfile = input("Enter output file name: ")
+            file_sort(infile, outfile)
 
 
 # call main function 
