@@ -255,52 +255,56 @@ def id_password(first, last):
 # used.
 
 def file_sort(infile, outfile):
-    # try:
-        # open the file 
-        fhandIn = open(infile,"r")
 
-        # read "student number" from the first line, save it to a variable called "studentCount"
-        studentCount = int(fhandIn.readline().strip())
 
-        # create an empty list called students
-        students = []
+    # open the file 
+    fhandIn = open(infile,"r")
 
-        # while the line is not null, continue read lines
-        for _ in range(studentCount):
-            student = fhandIn.readline().strip()
-            studentL = student.split()
-            students.append(studentL)
+    # read "student number" from the first line, save it to a variable called "studentCount", get ride of blank space
+    studentCount = fhandIn.readline().strip()
 
-        fhandIn.close()
+    # cast from string to int
+    studentCount = int(studentCount)
 
-        # selection sort student based on id 
-        for i in range(len(students)):
-            min_index = i
-            for j in range(i+1, len(students)):
-                if int(students[j][0]) < int(students[min_index][0]):
+    # creat an empty list called students
+    students = []
 
-                    temp = students[min_index]
-                    students[min_index] = students[j]
-                    students[j] = temp
+    # when index in range of student number, continue read lines
+    for index in range(studentCount):
+        # get rid of the blank space
+        student = fhandIn.readline().strip()
+        # split string with space, get list 
+        studentL = student.split()
 
-                   # students[min_index], students[j] = students[j], students[min_index]
+        # add each student to "students" list. "students" is now a 2d array 
+        students.append(studentL)
 
-                   # students[j], students[min_index] = students[min_index], students[j]
+    fhandIn.close()
 
-        # write the sorted students to file 
-        fhandOut = open(outfile, "w")
-        # write student number to the first line
-        fhandOut.write(str(studentCount) + "\n")
 
-        # write sorted students to file
-        for student in students:
-            # fhandOut.write(' '.join(student) + "\n")
-            fhandOut.write(student[0] + ' ' + student[1] + ' ' + student[2] + "\n")
+    # selection sort student based on id 
+    for i in range (len(students)):
+        min_index = i
+        for j in range (i+1, len(students)):
+            if (int(students[j][0]) < int(students[min_index][0])):
+                temp = students[min_index]
+                students[min_index] = students[j]
+                students[j] = temp
 
-        fhandOut.close()
 
-   # except Exception as e:
-    #    print(f"An error occurred: {e}")
+    # write the sorted students to file 
+
+    # opent the file 
+    fhandOut = open(outfile, "w")
+    # write student number to the first line
+    fhandOut.write(str(studentCount) + "\n")
+
+    # write sorted students to file
+    for student in students:
+        fhandOut.write(student[0] + ' ' + student[1] + ' ' + student[2] + "\n")
+        # fhandOut.write(' '.join(student) + "\n")
+
+    fhandOut.close()
 
  
 
